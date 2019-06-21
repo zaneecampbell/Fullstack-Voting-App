@@ -9,7 +9,7 @@ app.use(express.json({ extended: false }));
 
 app.get("/", (req, res) => res.send("API Running"));
 
-app.use("/api/poll", require("./routes/api/poll"));
+app.use("/api", require("./routes/api/poll"));
 
 const PORT = process.env.PORT || 5000;
 

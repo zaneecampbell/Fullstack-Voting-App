@@ -5,11 +5,11 @@ const { check, validationResult } = require("express-validator/check");
 
 const Poll = require("../../models/Poll");
 
-// @route POST api/create
+// @route POST api/
 // @desc create poll
 // @access Public
 router.post(
-  "/",
+  "/create",
   [
     check("question", "Please ask a question")
       .not()
@@ -34,4 +34,25 @@ router.post(
   },
 );
 
+// @route POST api/:id
+// @desc get poll
+// @access Public
+
 module.exports = router;
+router.get("/get/:id", async (req, res) => {
+  try {
+    const poll = await Poll.findById(req.params.id);
+
+    if (!poll) {
+      return res.status(400).json({ msg: "Poll not found" });
+    }
+
+    res.json(poll);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === "ObjectId") {
+      return res.status(404).json({ msg: "Post not found" });
+    }
+    res.status(500).send("Server Error");
+  }
+});
