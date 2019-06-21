@@ -30,9 +30,7 @@ router.post(
 
     await poll.save();
 
-    console.log(poll);
-
-    res.json(poll);
+    res.json(poll.id);
   },
 );
 
