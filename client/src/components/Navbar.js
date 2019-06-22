@@ -27,20 +27,23 @@ export default class Navigation extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color='faded' light>
+        <Navbar color='info' light>
           <NavbarBrand href='/' className='mr-auto'>
-            reactstrap
+            Chill Poll
           </NavbarBrand>
           <NavbarToggler onClick={this.toggleNavbar} className='mr-2' />
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
               <NavItem>
-                <NavLink href='/components/'>Components</NavLink>
+                <NavLink href='/components/'>Search Recent Polls</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href='https://github.com/reactstrap/reactstrap'>
+                <NavLink href='https://github.com/zaneecampbell'>
                   GitHub
                 </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href='https://zane-campbell.com'>Website</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
