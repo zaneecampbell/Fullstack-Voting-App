@@ -1,16 +1,16 @@
-import React, { Fragment } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Navbar from "./components/Navbar";
-// import CreatePage from "./components/CreatePage";
+import React, { Fragment } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from './components/Header';
+import CreatePage from './components/CreatePage';
 // import VotePage from "./components/VotePage";
 // import ResultPage from "./components/ResultPage";
-import "./App.css";
+import './App.css';
 
 const App = () => (
   <Router>
     <Fragment>
-      <Navbar />
-      <h1>Voting App</h1>
+      <Header />
+      <CreatePage />
     </Fragment>
   </Router>
 );
