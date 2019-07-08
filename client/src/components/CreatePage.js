@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 
@@ -30,7 +30,7 @@ const CreatePage = () => {
       // Replaces currect options array with updated copy
       setFormData({ ...formData, options: copy });
       // If the field being typed in is the bottom field, automatically adds a new Input by adding a new options object to the state.
-      if (e.target.id == options.length - 1) {
+      if (parseInt(e.target.id, 10) === options.length - 1) {
         options.push({ option: '', count: 0 });
       }
     }

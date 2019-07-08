@@ -10,7 +10,9 @@ const App = () => (
   <Router>
     <Fragment>
       <Header />
-      <CreatePage />
+      <Switch>
+        <Route exact path='/' component={CreatePage} />
+      </Switch>
     </Fragment>
   </Router>
 );
