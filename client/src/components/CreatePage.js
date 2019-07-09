@@ -39,7 +39,6 @@ const CreatePage = () => {
   return (
     <Fragment>
       <Paper
-        margin='auto'
         style={{
           maxWidth: '900px',
           margin: 'auto',
@@ -49,9 +48,12 @@ const CreatePage = () => {
           textAlign: 'center'
         }}
       >
-        <form>
+        <form style={{ marginTop: '50px', marginBottom: '50px' }}>
           <Input
-            style={{ marginTop: '50px', marginBottom: '50px' }}
+            style={{
+              fontSize: '50px',
+              marginBottom: '15px'
+            }}
             type='text'
             value={question}
             name='question'
@@ -64,6 +66,9 @@ const CreatePage = () => {
             {options.map((option, idx) => (
               <div key={idx}>
                 <Input
+                  style={{
+                    fontSize: '50px'
+                  }}
                   id={`${idx}`}
                   type='text'
                   value={option.option}

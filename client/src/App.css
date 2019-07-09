@@ -1,2 +1,7 @@
-body {
+#root {
+  background-color: #e6e6e6;
+}
+
+:root {
+  background-color: #e6e6e6;
 }
