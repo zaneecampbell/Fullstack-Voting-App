@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 // import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 const CreatePage = () => {
   const [formData, setFormData] = useState({
@@ -36,6 +37,27 @@ const CreatePage = () => {
     }
   };
 
+  const onSubmit = async e => {
+    e.preventDefault();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    try {
+      const res = await axios.post('/api/create', formData, config);
+      console.log(res);
+    } catch (err) {
+      const errors = err.response.data.errors;
+
+      if (errors) {
+        console.log(errors);
+      }
+    }
+  };
+
   return (
     <Fragment>
       <Paper
@@ -48,7 +70,10 @@ const CreatePage = () => {
           textAlign: 'center'
         }}
       >
-        <form style={{ marginTop: '50px', marginBottom: '50px' }}>
+        <form
+          style={{ marginTop: '50px', marginBottom: '50px' }}
+          onSubmit={e => onSubmit(e)}
+        >
           <Input
             style={{
               fontSize: '50px',
