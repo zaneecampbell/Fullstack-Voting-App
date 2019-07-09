@@ -40,11 +40,11 @@ const CreatePage = () => {
     <Fragment>
       <Paper
         style={{
-          maxWidth: '900px',
+          maxWidth: '750px',
           margin: 'auto',
           marginTop: '50px',
           padding: '10px',
-          paddingBottom: '50px',
+          paddingBottom: '30px',
           textAlign: 'center'
         }}
       >
@@ -52,7 +52,8 @@ const CreatePage = () => {
           <Input
             style={{
               fontSize: '50px',
-              marginBottom: '15px'
+              margin: '15px',
+              marginBottom: '50px'
             }}
             type='text'
             value={question}
@@ -67,7 +68,8 @@ const CreatePage = () => {
               <div key={idx}>
                 <Input
                   style={{
-                    fontSize: '50px'
+                    fontSize: '50px',
+                    margin: '15px'
                   }}
                   id={`${idx}`}
                   type='text'
