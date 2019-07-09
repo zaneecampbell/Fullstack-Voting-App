@@ -81,9 +81,20 @@ const CreatePage = () => {
               </div>
             ))}
           </div>
+          <Button
+            style={{
+              marginTop: '25px',
+              fontSize: '30px',
+              backgroundColor: '#3f51b5',
+              padding: '15px',
+              color: 'white'
+            }}
+            type='submit'
+          >
+            Creat Poll
+          </Button>
         </form>
       </Paper>
-      <Button onClick={() => console.log(formData)}>Console Log State</Button>
     </Fragment>
   );
 };
