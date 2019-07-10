@@ -67,7 +67,7 @@ const CreatePage = ({ history }) => {
       console.log(postData);
       const res = await axios.post('/api/create', postData, config);
       console.log(res.data);
-      history.push(`/votepage/${res.data}`);
+      history.push(`/VotePage/id=${res.data}`);
     } catch (err) {
       console.log(err);
     }

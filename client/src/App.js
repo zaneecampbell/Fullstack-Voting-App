@@ -12,7 +12,7 @@ const App = () => (
       <Header />
       <Switch>
         <Route exact path='/' component={CreatePage} />
-        <Route exact path='/VotePage' component={VotePage} />
+        <Route exact path='/VotePage/:id' component={VotePage} />
       </Switch>
     </Fragment>
   </Router>
