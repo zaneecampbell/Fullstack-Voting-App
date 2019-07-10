@@ -46,15 +46,29 @@ const CreatePage = () => {
       }
     };
 
+    if (formData.question.trim() === '') {
+      return alert('Please ask a question.');
+    }
+
     try {
-      const res = await axios.post('/api/create', formData, config);
+      let trimCopy = formData.options.filter(
+        option => option.option.trim() !== ''
+      );
+
+      const postData = {
+        question,
+        options: trimCopy
+      };
+
+      if (postData.options.length < 2) {
+        return alert('Please add at least 2 options');
+      }
+
+      console.log(postData);
+      const res = await axios.post('/api/create', postData, config);
       console.log(res);
     } catch (err) {
-      const errors = err.response.data.errors;
-
-      if (errors) {
-        console.log(errors);
-      }
+      console.log(err);
     }
   };
 
