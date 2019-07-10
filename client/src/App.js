@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import CreatePage from './components/CreatePage';
 import './App.css';
-// import VotePage from "./components/VotePage";
+import VotePage from './components/VotePage';
 // import ResultPage from "./components/ResultPage";
 
 const App = () => (
@@ -12,6 +12,7 @@ const App = () => (
       <Header />
       <Switch>
         <Route exact path='/' component={CreatePage} />
+        <Route exact path='/VotePage' component={VotePage} />
       </Switch>
     </Fragment>
   </Router>

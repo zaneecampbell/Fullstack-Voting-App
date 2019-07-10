@@ -5,7 +5,7 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 
-const CreatePage = () => {
+const CreatePage = ({ history }) => {
   const [formData, setFormData] = useState({
     question: '',
     options: [
@@ -37,7 +37,7 @@ const CreatePage = () => {
     }
   };
 
-  const onSubmit = async e => {
+  const onSubmit = async (e, history) => {
     e.preventDefault();
 
     const config = {
@@ -66,7 +66,8 @@ const CreatePage = () => {
 
       console.log(postData);
       const res = await axios.post('/api/create', postData, config);
-      console.log(res);
+      console.log(res.data);
+      history.push(`/votepage/${res.data}`);
     } catch (err) {
       console.log(err);
     }
@@ -86,7 +87,7 @@ const CreatePage = () => {
       >
         <form
           style={{ marginTop: '50px', marginBottom: '50px' }}
-          onSubmit={e => onSubmit(e)}
+          onSubmit={e => onSubmit(e, history)}
         >
           <Input
             style={{
