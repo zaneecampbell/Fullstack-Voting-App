@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from 'react';
+import { Route, Redirect } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 // import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
@@ -64,10 +65,10 @@ const CreatePage = ({ history }) => {
         return alert('Please add at least 2 options');
       }
 
-      console.log(postData);
+      console.log(postData, 'postData');
       const res = await axios.post('/api/create', postData, config);
-      console.log(res.data);
-      history.push(`/VotePage/id=${res.data}`);
+      console.log(res.data, 'resData - CreatePage End');
+      history.push(`/VotePage/${res.data}`);
     } catch (err) {
       console.log(err);
     }
