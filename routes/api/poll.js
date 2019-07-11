@@ -1,19 +1,19 @@
-const express = require("express");
+const express = require('express');
 // const request = require("request");
 const router = express.Router();
-const { check, validationResult } = require("express-validator");
+const { check, validationResult } = require('express-validator');
 
-const Poll = require("../../models/Poll");
+const Poll = require('../../models/Poll');
 
 // @route POST api/
 // @desc create poll
 // @access Public
 router.post(
-  "/create",
+  '/create',
   [
-    check("question", "Please ask a question")
+    check('question', 'Please ask a question')
       .not()
-      .isEmpty(),
+      .isEmpty()
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -25,34 +25,39 @@ router.post(
 
     poll = new Poll({
       question,
-      options,
+      options
     });
 
     await poll.save();
 
     res.json(poll.id);
-  },
+  }
 );
 
 // @route POST api/:id
 // @desc get poll
 // @access Public
 
-module.exports = router;
-router.get("/get/:id", async (req, res) => {
+router.get('/get/:id', async (req, res) => {
   try {
     const poll = await Poll.findById(req.params.id);
 
     if (!poll) {
-      return res.status(400).json({ msg: "Poll not found" });
+      return res.status(400).json({ msg: 'Poll not found' });
     }
 
     res.json(poll);
   } catch (err) {
     console.error(err.message);
-    if (err.kind === "ObjectId") {
-      return res.status(404).json({ msg: "Post not found" });
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'Poll not found' });
     }
-    res.status(500).send("Server Error");
+    res.status(500).send('Server Error');
   }
 });
+
+/// @route P
+/// @desc update poll information when voting
+// @access Public
+
+module.exports = router;
