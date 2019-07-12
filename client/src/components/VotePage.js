@@ -1,28 +1,30 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import axios from 'axios';
 
 const VotePage = ({ match }) => {
   const id = match.params.id;
 
-  // const [formData, setFormData] = useState({
-  //   question: null,
-  //   options: null
-  // });
+  const [formData, setFormData] = useState(null);
 
   useEffect(() => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    };
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
 
-    const getData = async () => {
       const res = await axios.get(`/api/get/${id}`, config);
-      console.log(res);
-    };
-    getData();
-  });
-  console.log(id);
+      setFormData({
+        question: res.data.question,
+        options: res.data.options
+      });
+      console.log(formData);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [formData, id]);
+
   return (
     <Fragment>
       <h1 style={{ fontSize: '100px' }}>hi</h1>
