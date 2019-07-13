@@ -1,9 +1,20 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Radio from '@material-ui/core/Radio';
+import Typography from '@material-ui/core/Typography';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import axios from 'axios';
 
 const VotePage = ({ match }) => {
-  const [formData, setFormData] = useState(null);
+  const [formData, setFormData] = useState({
+    question: '',
+    options: [{ option: 'Loading...' }, { option: 'Loading...' }]
+  });
+
+  const { question, options } = formData;
 
   useEffect(() => {
     try {
@@ -32,8 +43,38 @@ const VotePage = ({ match }) => {
 
   return (
     <Fragment>
-      <h1 style={{ fontSize: '100px' }}>hi</h1>
-      <Button onClick={() => console.log(formData)}>Log Button</Button>
+      <Paper
+        style={{
+          maxWidth: '750px',
+          margin: 'auto',
+          marginTop: '50px',
+          padding: '10px',
+          paddingBottom: '30px',
+          textAlign: 'center'
+        }}
+      >
+        <Typography style={{ marginTop: '50px', fontSize: '50px' }}>
+          {question}
+        </Typography>
+        <form>
+          <div>
+            <FormGroup style={{ marginTop: '50px' }}>
+              {options.map((option, idx) => (
+                <div key={idx} id='form-div'>
+                  <FormControlLabel
+                    style={{ padding: '10px' }}
+                    control={
+                      <Radio type='radio' value={option.firebaseIndex} />
+                    }
+                    label={option.option}
+                  />
+                </div>
+              ))}
+            </FormGroup>
+          </div>
+        </form>
+      </Paper>
+      <Button onClick={() => console.log(options)}>Log Button</Button>
     </Fragment>
   );
 };
