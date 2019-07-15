@@ -1,3 +1,7 @@
+// Note for future self
+// Last  thing you were working on was
+// Making the radio buttons work properly (actually select something in state)
+
 import React, { Fragment, useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
@@ -11,10 +15,11 @@ import axios from 'axios';
 const VotePage = ({ match }) => {
   const [formData, setFormData] = useState({
     question: '',
-    options: [{ option: 'Loading...' }, { option: 'Loading...' }]
+    options: [{ option: 'Loading...' }, { option: 'Loading...' }],
+    selected: ''
   });
 
-  const { question, options } = formData;
+  const { question, options, selected } = formData;
 
   useEffect(() => {
     try {
@@ -31,7 +36,8 @@ const VotePage = ({ match }) => {
           console.log(res);
           setFormData({
             question: res.data.question,
-            options: res.data.options
+            options: res.data.options,
+            selected: ''
           });
         } catch (err) {}
       };
@@ -40,6 +46,11 @@ const VotePage = ({ match }) => {
       console.log(error);
     }
   }, [match]);
+
+  const handleChange = e => {
+    const selected = e.target.value;
+    setFormData({ ...formData, selected });
+  };
 
   return (
     <Fragment>
@@ -63,10 +74,17 @@ const VotePage = ({ match }) => {
                 <div key={idx} id='form-div'>
                   <FormControlLabel
                     style={{ padding: '10px' }}
+                    value={idx}
                     control={
-                      <Radio type='radio' value={option.firebaseIndex} />
+                      <Radio
+                        type='radio'
+                        value={option.idx}
+                        checked={selected === `${idx}`}
+                        onChange={handleChange}
+                      />
                     }
                     label={option.option}
+                    onClick={() => option.idx}
                   />
                 </div>
               ))}
@@ -74,7 +92,7 @@ const VotePage = ({ match }) => {
           </div>
         </form>
       </Paper>
-      <Button onClick={() => console.log(options)}>Log Button</Button>
+      <Button onClick={() => console.log(formData)}>Log Button</Button>
     </Fragment>
   );
 };
