@@ -58,6 +58,7 @@ router.get('/get/:id', async (req, res) => {
 
 /// @route P
 /// @desc update poll information when voting
-// @access Public
+/// @access Public
+/// ToDo Note: using find by ID, locating the options array, select the index of the object then increment the count using ${inc }
 
 module.exports = router;
