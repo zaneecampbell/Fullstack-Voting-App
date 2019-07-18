@@ -52,6 +52,11 @@ const VotePage = ({ match }) => {
     setFormData({ ...formData, selected });
   };
 
+  const onSubmit = async (e, selected) => {
+    e.preventDefault();
+    console.log(selected);
+  };
+
   return (
     <Fragment>
       <Paper
@@ -67,7 +72,7 @@ const VotePage = ({ match }) => {
         <Typography style={{ marginTop: '50px', fontSize: '50px' }}>
           {question}
         </Typography>
-        <form>
+        <form onSubmit={e => onSubmit(e, selected)}>
           <div>
             <FormGroup style={{ marginTop: '50px' }}>
               {options.map((option, idx) => (
@@ -90,6 +95,18 @@ const VotePage = ({ match }) => {
               ))}
             </FormGroup>
           </div>
+          <Button
+            style={{
+              marginTop: '25px',
+              fontSize: '30px',
+              backgroundColor: '#3f51b5',
+              padding: '15px',
+              color: 'white'
+            }}
+            type='submit'
+          >
+            Vote
+          </Button>
         </form>
       </Paper>
       <Button onClick={() => console.log(formData)}>Log Button</Button>
