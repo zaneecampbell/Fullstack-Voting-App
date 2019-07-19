@@ -50,9 +50,9 @@ const VotePage = ({ match }) => {
     setFormData({ ...formData, selected });
   };
 
-  const onSubmit = async (e, selected) => {
+  const onSubmit = async (e, selected, id = match.params.id) => {
     e.preventDefault();
-    console.log(parseInt(selected, 10));
+    console.log(parseInt(selected, 10), id);
   };
 
   return (
