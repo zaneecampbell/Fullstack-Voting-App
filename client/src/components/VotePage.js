@@ -1,6 +1,4 @@
-// Note for future self
-// Last  thing you were working on was
-// Making the radio buttons work properly (actually select something in state)
+// sending the index off to the server-side to increment the count in the poll for their vote
 
 import React, { Fragment, useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
@@ -54,7 +52,7 @@ const VotePage = ({ match }) => {
 
   const onSubmit = async (e, selected) => {
     e.preventDefault();
-    console.log(selected);
+    console.log(parseInt(selected, 10));
   };
 
   return (
