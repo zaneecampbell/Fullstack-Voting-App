@@ -1,18 +1,18 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PollSchema = new Schema({
   question: {
     type: String,
-    required: true,
+    required: true
   },
   options: {
-    type: Array,
+    type: Array
   },
   date: {
     type: Date,
-    default: Date.now,
-  },
+    default: Date.now
+  }
 });
 
-module.exports = Poll = mongoose.model("poll", PollSchema);
+module.exports = Poll = mongoose.model('poll', PollSchema);

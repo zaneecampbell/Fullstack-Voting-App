@@ -67,7 +67,14 @@ router.patch('/patch/:id', async (req, res) => {
       return res.status(400).json({ msg: 'Poll not found' });
     }
 
-    const updated = await poll.updateOne({});
+    const updated = await poll.updateOne(
+      { 'options.index': req.body.selected },
+      {
+        $inc: {
+          'options.$.count': 1
+        }
+      }
+    );
 
     res.json(updated);
   } catch (err) {

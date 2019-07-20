@@ -10,9 +10,9 @@ const CreatePage = ({ history }) => {
   const [formData, setFormData] = useState({
     question: '',
     options: [
-      { option: '', count: 0 },
-      { option: '', count: 0 },
-      { option: '', count: 0 }
+      { option: '', count: 0, index: 0 },
+      { option: '', count: 0, index: 1 },
+      { option: '', count: 0, index: 2 }
     ]
   });
 
@@ -33,7 +33,11 @@ const CreatePage = ({ history }) => {
       setFormData({ ...formData, options: copy });
       // If the field being typed in is the bottom field, automatically adds a new Input by adding a new options object to the state.
       if (parseInt(e.target.id, 10) === options.length - 1) {
-        options.push({ option: '', count: 0 });
+        options.push({
+          option: '',
+          count: 0,
+          index: parseInt(e.target.id, 10) + 1
+        });
       }
     }
   };
