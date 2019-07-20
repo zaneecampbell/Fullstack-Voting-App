@@ -59,6 +59,23 @@ router.get('/get/:id', async (req, res) => {
 /// @route P
 /// @desc update poll information when voting
 /// @access Public
-/// ToDo Note: using find by ID, locating the options array, select the index of the object then increment the count using ${inc }
+router.patch('/patch/:id', async (req, res) => {
+  try {
+    const poll = await Poll.findById(req.params.id);
+
+    if (!poll) {
+      return res.status(400).json({ msg: 'Poll not found' });
+    }
+
+    const updated = await poll.updateOne({});
+
+    res.json(updated);
+  } catch (err) {
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'Poll not found' });
+    }
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;

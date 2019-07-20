@@ -52,7 +52,21 @@ const VotePage = ({ match }) => {
 
   const onSubmit = async (e, selected, id = match.params.id) => {
     e.preventDefault();
-    console.log(parseInt(selected, 10), id);
+
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+
+      const body = JSON.stringify({ selected });
+
+      const res = await axios.patch(`/api/patch/${id}`, body, config);
+      console.log(res.data.options);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
