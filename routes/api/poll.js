@@ -61,22 +61,23 @@ router.get('/get/:id', async (req, res) => {
 /// @access Public
 router.patch('/patch/:id', async (req, res) => {
   try {
+    const index = parseInt(req.body.selected, 10);
     const poll = await Poll.findById(req.params.id);
 
     if (!poll) {
       return res.status(400).json({ msg: 'Poll not found' });
     }
 
-    const updated = await poll.updateOne(
-      { 'options.index': req.body.selected },
-      {
-        $inc: {
-          'options.$.count': 1
-        }
-      }
+    const update = 'options.' + index + '.count';
+
+    Poll.findOneAndUpdate(
+      { _id: req.params.id },
+      { $inc: { [update]: 1 } },
+      { upsert: true },
+      () => console.log('success')
     );
 
-    res.json(updated);
+    res.json(poll);
   } catch (err) {
     if (err.kind === 'ObjectId') {
       return res.status(404).json({ msg: 'Poll not found' });
