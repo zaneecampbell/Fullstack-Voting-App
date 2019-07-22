@@ -4,7 +4,7 @@ import Header from './components/Header';
 import CreatePage from './components/CreatePage';
 import './App.css';
 import VotePage from './components/VotePage';
-// import ResultPage from "./components/ResultPage";
+import ResultsPage from './components/ResultsPage';
 
 const App = () => (
   <Router>
@@ -13,6 +13,7 @@ const App = () => (
       <Switch>
         <Route exact path='/' component={CreatePage} />
         <Route path='/VotePage/:id' component={VotePage} />
+        <Route path='/ResultsPage/:id' component={ResultsPage} />
       </Switch>
     </Fragment>
   </Router>

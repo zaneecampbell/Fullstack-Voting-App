@@ -70,14 +70,14 @@ router.patch('/patch/:id', async (req, res) => {
 
     const update = 'options.' + index + '.count';
 
-    Poll.findOneAndUpdate(
+    const updatedPoll = await Poll.findOneAndUpdate(
       { _id: req.params.id },
       { $inc: { [update]: 1 } },
       { upsert: true },
       () => console.log('success')
     );
 
-    res.json(poll);
+    res.json(updatedPoll);
   } catch (err) {
     if (err.kind === 'ObjectId') {
       return res.status(404).json({ msg: 'Poll not found' });

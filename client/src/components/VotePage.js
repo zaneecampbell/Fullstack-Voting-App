@@ -3,14 +3,13 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 import Radio from '@material-ui/core/Radio';
 import Typography from '@material-ui/core/Typography';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import axios from 'axios';
 
-const VotePage = ({ match }) => {
+const VotePage = ({ match, history }) => {
   const [formData, setFormData] = useState({
     question: '',
     options: [{ option: 'Loading...' }, { option: 'Loading...' }],
@@ -50,7 +49,7 @@ const VotePage = ({ match }) => {
     setFormData({ ...formData, selected });
   };
 
-  const onSubmit = async (e, selected, id = match.params.id) => {
+  const onSubmit = async (e, selected, history, id = match.params.id) => {
     e.preventDefault();
 
     try {
@@ -64,6 +63,7 @@ const VotePage = ({ match }) => {
 
       const res = await axios.patch(`/api/patch/${id}`, body, config);
       console.log(res.data.options);
+      history.push(`/ResultsPage/${id}`);
     } catch (err) {
       console.log(err);
     }
@@ -84,7 +84,7 @@ const VotePage = ({ match }) => {
         <Typography style={{ marginTop: '50px', fontSize: '50px' }}>
           {question}
         </Typography>
-        <form onSubmit={e => onSubmit(e, selected)}>
+        <form onSubmit={e => onSubmit(e, selected, history)}>
           <div>
             <FormGroup style={{ marginTop: '50px' }}>
               {options.map((option, idx) => (
