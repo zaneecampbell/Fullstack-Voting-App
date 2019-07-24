@@ -30,7 +30,6 @@ const VotePage = ({ match, history }) => {
           };
 
           const res = await axios.get(`/api/get/${id}`, config);
-          console.log(res);
           setFormData({
             question: res.data.question,
             options: res.data.options,
