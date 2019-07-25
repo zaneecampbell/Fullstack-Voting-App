@@ -7,9 +7,11 @@ import axios from 'axios';
 
 const ResultsPage = ({ match }) => {
   const [formData, setFormData] = useState({
-    question: '',
+    question: 'Loading...',
     options: [{ option: 'Loading...' }, { option: 'Loading...' }]
   });
+
+  const { question, options } = formData;
 
   useEffect(() => {
     try {
@@ -38,10 +40,22 @@ const ResultsPage = ({ match }) => {
 
   return (
     <Fragment>
-      <Grid>
-        <Paper>hi</Paper>
-        <Button onClick={() => console.log(formData)}>Log Button</Button>
-      </Grid>
+      <Paper>
+        <Grid
+          container
+          direction='row'
+          justify='center'
+          alignItems='center'
+          spacing={0}
+        >
+          <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
+            <Typography style={{ fontSize: '50px' }}>{question}</Typography>
+          </Grid>
+          <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
+            <Typography style={{ fontSize: '50px' }}>{question}</Typography>
+          </Grid>
+        </Grid>
+      </Paper>
     </Fragment>
   );
 };
