@@ -60,8 +60,7 @@ const VotePage = ({ match, history }) => {
 
       const body = JSON.stringify({ selected });
 
-      const res = await axios.patch(`/api/patch/${id}`, body, config);
-      console.log(res.data.options);
+      await axios.patch(`/api/patch/${id}`, body, config);
       history.push(`/ResultsPage/${id}`);
     } catch (err) {
       console.log(err);

@@ -70,8 +70,7 @@ router.patch('/patch/:id', async (req, res) => {
 
     const update = 'options.' + index + '.count';
 
-    const updatedPoll = await Poll.findOneAndUpdate(
-      { _id: req.params.id },
+    const updatedPoll = await poll.updateOne(
       { $inc: { [update]: 1 } },
       { upsert: true },
       () => console.log('success')

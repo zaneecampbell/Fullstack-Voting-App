@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import { Button } from '@material-ui/core';
+// import { Button } from '@material-ui/core';
 import axios from 'axios';
 
 const ResultsPage = ({ match }) => {
@@ -52,7 +52,11 @@ const ResultsPage = ({ match }) => {
             <Typography style={{ fontSize: '50px' }}>{question}</Typography>
           </Grid>
           <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
-            <Typography style={{ fontSize: '50px' }}>{question}</Typography>
+            <Typography style={{ fontSize: '50px' }}>
+              {options.map(option => (
+                <div>{option.count}</div>
+              ))}
+            </Typography>
           </Grid>
         </Grid>
       </Paper>
