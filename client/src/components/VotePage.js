@@ -79,12 +79,12 @@ const VotePage = ({ match, history }) => {
           textAlign: 'center'
         }}
       >
-        <Typography style={{ marginTop: '50px', fontSize: '50px' }}>
+        <Typography style={{ marginTop: '25px', fontSize: '50px' }}>
           {question}
         </Typography>
         <form onSubmit={e => onSubmit(e, selected, history)}>
           <div>
-            <FormGroup style={{ marginTop: '50px' }}>
+            <FormGroup style={{ marginTop: '25px' }}>
               {options.map((option, idx) => (
                 <div key={idx} id='form-div'>
                   <FormControlLabel

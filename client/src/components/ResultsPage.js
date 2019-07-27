@@ -40,8 +40,12 @@ const ResultsPage = ({ match }) => {
 
   return (
     <Fragment>
-      <Paper>
-        <Typography style={{ fontSize: '50px', textAlign: 'center' }}>
+      <Paper
+        style={{ marginLeft: '15px', marginRight: '15px', marginTop: '50px' }}
+      >
+        <Typography
+          style={{ paddingTop: '25px', fontSize: '50px', textAlign: 'center' }}
+        >
           {question}
         </Typography>
         <Grid
