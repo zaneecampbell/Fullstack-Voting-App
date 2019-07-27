@@ -19,7 +19,7 @@ export default function SimpleAppBar() {
         <Toolbar>
           <Typography
             style={{ margin: 'auto', padding: '20px' }}
-            variant='h1'
+            variant='h4'
             color='inherit'
           >
             Voting App

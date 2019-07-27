@@ -41,6 +41,9 @@ const ResultsPage = ({ match }) => {
   return (
     <Fragment>
       <Paper>
+        <Typography style={{ fontSize: '50px', textAlign: 'center' }}>
+          {question}
+        </Typography>
         <Grid
           container
           direction='row'
@@ -48,15 +51,31 @@ const ResultsPage = ({ match }) => {
           alignItems='center'
           spacing={0}
         >
-          <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
-            <Typography style={{ fontSize: '50px' }}>{question}</Typography>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            style={{
+              textAlign: 'center',
+              margin: 'auto',
+              alignItems: 'center'
+            }}
+          >
+            <table
+              style={{ margin: 'auto', textAlign: 'right', fontSize: '30px' }}
+            >
+              <tbody>
+                {options.map((option, idx) => (
+                  <tr key={idx}>
+                    <td>{option.option}: &nbsp;&nbsp;</td>
+                    <td>{option.count}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </Grid>
           <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
-            <Typography style={{ fontSize: '50px' }}>
-              {options.map(option => (
-                <div>{option.count}</div>
-              ))}
-            </Typography>
+            Graph Here
           </Grid>
         </Grid>
       </Paper>
