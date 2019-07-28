@@ -16,6 +16,7 @@ const CreatePage = ({ history }) => {
     ]
   });
 
+  // destructure state variables
   const { question, options } = formData;
 
   const onInput = e => {
@@ -45,33 +46,40 @@ const CreatePage = ({ history }) => {
   const onSubmit = async (e, history) => {
     e.preventDefault();
 
+    // setup config headers
     const config = {
       headers: {
         'Content-Type': 'application/json'
       }
     };
 
+    // make sure the question field isn't empty
     if (formData.question.trim() === '') {
       return alert('Please ask a question.');
     }
 
     try {
+      // make sure none of the options fields aren't empty
       let trimCopy = formData.options.filter(
         option => option.option.trim() !== ''
       );
 
+      // setup object to send to server
       const postData = {
         question,
         options: trimCopy
       };
 
+      // makes sure you have at least 2 options
       if (postData.options.length < 2) {
         return alert('Please add at least 2 options');
       }
 
       console.log(postData, 'postData');
+      // send to server
       const res = await axios.post('/api/create', postData, config);
       console.log(res.data, 'resData - CreatePage End');
+      // push you to votepage
       history.push(`/VotePage/${res.data}`);
     } catch (err) {
       console.log(err);
