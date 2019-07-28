@@ -15,7 +15,7 @@ const ResultsPage = ({ match }) => {
 
   const pieArray = [];
 
-  options.map((option, idx) => {
+  options.forEach((option, idx) => {
     if (option.count !== 0) {
       pieArray.push({ x: idx, y: option.count, label: option.option });
     } else {
@@ -46,7 +46,7 @@ const ResultsPage = ({ match }) => {
     } catch (error) {
       console.log(error);
     }
-  }, [match]);
+  });
 
   return (
     <Fragment>
