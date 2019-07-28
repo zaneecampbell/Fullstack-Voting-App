@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -6,7 +7,7 @@ import { VictoryPie } from 'victory';
 import useInterval from 'react-useinterval';
 import axios from 'axios';
 
-const ResultsPage = ({ match }) => {
+const ResultsPage = ({ match, history }) => {
   const [formData, setFormData] = useState({
     question: 'Loading...',
     options: [{ option: 'Loading...' }, { option: 'Loading...' }]
@@ -14,8 +15,10 @@ const ResultsPage = ({ match }) => {
 
   const { question, options } = formData;
 
+  // Array for Pie Chart Data
   const pieArray = [];
 
+  // Fills the array for Pie Chart Data
   options.forEach((option, idx) => {
     if (option.count !== 0) {
       pieArray.push({ x: idx, y: option.count, label: option.option });
@@ -24,9 +27,8 @@ const ResultsPage = ({ match }) => {
     }
   });
 
-  const id = match.params.id;
-
   const getData = async () => {
+    const id = match.params.id;
     try {
       const config = {
         headers: {
@@ -40,7 +42,9 @@ const ResultsPage = ({ match }) => {
         question: res.data.question,
         options: res.data.options
       });
-    } catch (err) {}
+    } catch (err) {
+      history.push('/');
+    }
   };
 
   // npm module that made real time updates and unmounting way easier
