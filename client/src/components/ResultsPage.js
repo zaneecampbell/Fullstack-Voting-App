@@ -80,7 +80,7 @@ const ResultsPage = ({ match }) => {
               <tbody>
                 {options.map((option, idx) => (
                   <tr key={idx}>
-                    <td>{option.option}: &nbsp;&nbsp;</td>
+                    <td>{option.option} &nbsp;&nbsp;</td>
                     <td>{option.count}</td>
                   </tr>
                 ))}
