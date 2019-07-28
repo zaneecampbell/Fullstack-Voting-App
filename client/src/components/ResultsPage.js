@@ -1,8 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { VictoryPie } from 'victory';
+import useInterval from 'react-useinterval';
 import axios from 'axios';
 
 const ResultsPage = ({ match }) => {
@@ -23,30 +24,27 @@ const ResultsPage = ({ match }) => {
     }
   });
 
-  useEffect(() => {
-    try {
-      const id = match.params.id;
-      const getData = async () => {
-        try {
-          const config = {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          };
+  const id = match.params.id;
 
-          const res = await axios.get(`/api/get/${id}`, config);
-          console.log(res);
-          setFormData({
-            question: res.data.question,
-            options: res.data.options
-          });
-        } catch (err) {}
+  const getData = async () => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       };
-      getData();
-    } catch (error) {
-      console.log(error);
-    }
-  });
+
+      const res = await axios.get(`/api/get/${id}`, config);
+      console.log(res);
+      setFormData({
+        question: res.data.question,
+        options: res.data.options
+      });
+    } catch (err) {}
+  };
+
+  // npm module that made real time updates and unmounting way easier
+  useInterval(getData, 1000);
 
   return (
     <Fragment>
