@@ -50,6 +50,21 @@ const VotePage = ({ match, history }) => {
 
   const onSubmit = async (e, selected, history, id = match.params.id) => {
     e.preventDefault();
+    const voted = JSON.parse(localStorage.getItem('id'));
+
+    // checks to see if there is anything in the id field
+
+    if (!voted) {
+      const voted = [];
+      voted.push(id);
+      localStorage.setItem('id', JSON.stringify(voted));
+    } else if (voted.includes(id)) {
+      alert('You have already voted on this poll, continuing to results');
+      history.push(`/ResultsPage/${id}`);
+    } else {
+      voted.push(id);
+      localStorage.setItem('id', JSON.stringify(voted));
+    }
 
     try {
       const config = {
