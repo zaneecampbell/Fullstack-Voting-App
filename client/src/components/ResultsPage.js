@@ -42,7 +42,8 @@ const ResultsPage = ({ match, history }) => {
         options: res.data.options
       });
     } catch (err) {
-      history.push('/');
+      console.log(err);
+      history.push('/NotFoundPage');
     }
   };
 

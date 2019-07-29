@@ -1,5 +1,3 @@
-// sending the index off to the server-side to increment the count in the poll for their vote
-
 import React, { Fragment, useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
@@ -19,29 +17,28 @@ const VotePage = ({ match, history }) => {
   const { question, options, selected } = formData;
 
   useEffect(() => {
-    try {
-      const id = match.params.id;
-      const getData = async () => {
-        try {
-          const config = {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          };
+    const id = match.params.id;
+    const getData = async () => {
+      try {
+        const config = {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        };
 
-          const res = await axios.get(`/api/get/${id}`, config);
-          setFormData({
-            question: res.data.question,
-            options: res.data.options,
-            selected: ''
-          });
-        } catch (err) {}
-      };
-      getData();
-    } catch (error) {
-      console.log(error);
-    }
-  }, [match]);
+        const res = await axios.get(`/api/get/${id}`, config);
+        setFormData({
+          question: res.data.question,
+          options: res.data.options,
+          selected: ''
+        });
+      } catch (err) {
+        console.log(err);
+        history.push('/NotFoundPage');
+      }
+    };
+    getData();
+  }, [match, history]);
 
   const handleChange = e => {
     const selected = e.target.value;
