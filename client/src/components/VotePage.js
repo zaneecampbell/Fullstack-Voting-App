@@ -60,7 +60,7 @@ const VotePage = ({ match, history }) => {
       localStorage.setItem('id', JSON.stringify(voted));
     } else if (voted.includes(id)) {
       alert('You have already voted on this poll, continuing to results');
-      history.push(`/ResultsPage/${id}`);
+      return history.push(`/ResultsPage/${id}`);
     } else {
       voted.push(id);
       localStorage.setItem('id', JSON.stringify(voted));
