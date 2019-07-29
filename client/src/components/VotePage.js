@@ -52,7 +52,9 @@ const VotePage = ({ match, history }) => {
     e.preventDefault();
     const voted = JSON.parse(localStorage.getItem('id'));
 
-    // checks to see if there is anything in the id field
+    // if nothing in the id field for voted, creates a new array and adds current poll id,
+    // if there is an id field checks to see if youve already voted in this one,
+    // else pushes current id to the array and saves it back, so you can't vote again
 
     if (!voted) {
       const voted = [];
@@ -66,6 +68,7 @@ const VotePage = ({ match, history }) => {
       localStorage.setItem('id', JSON.stringify(voted));
     }
 
+    // sends off the request for your vote
     try {
       const config = {
         headers: {
