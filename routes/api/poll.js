@@ -50,7 +50,7 @@ router.get('/get/:id', async (req, res) => {
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
-      return res.status(400).json({ msg: 'Poll not found' });
+      return res.status(404).json({ msg: 'Poll not found' });
     }
     res.status(500).send('Server Error');
   }
@@ -79,7 +79,7 @@ router.patch('/patch/:id', async (req, res) => {
     res.json(updatedPoll);
   } catch (err) {
     if (err.kind === 'ObjectId') {
-      return res.status(400).json({ msg: 'Poll not found' });
+      return res.status(404).json({ msg: 'Poll not found' });
     }
     res.status(500).send('Server Error');
   }
