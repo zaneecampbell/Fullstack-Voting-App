@@ -5,7 +5,7 @@ const { check, validationResult } = require('express-validator');
 
 const Poll = require('../../models/Poll');
 
-// @route POST api/
+// @route POST /api/create
 // @desc create poll
 // @access Public
 router.post(
@@ -34,8 +34,8 @@ router.post(
   }
 );
 
-// @route POST api/:id
-// @desc get poll
+// @route GET /api/get/:id
+// @desc get poll data
 // @access Public
 
 router.get('/get/:id', async (req, res) => {
@@ -43,21 +43,21 @@ router.get('/get/:id', async (req, res) => {
     const poll = await Poll.findById(req.params.id);
 
     if (!poll) {
-      return res.status(400).json({ msg: 'Poll not found' });
+      return res.status(404).json({ msg: 'Poll not found' });
     }
 
     res.json(poll);
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Poll not found' });
+      return res.status(400).json({ msg: 'Poll not found' });
     }
     res.status(500).send('Server Error');
   }
 });
 
-/// @route P
-/// @desc update poll information when voting
+/// @route Patch /api/patch/:id
+/// @desc update poll count information when voting
 /// @access Public
 router.patch('/patch/:id', async (req, res) => {
   try {
@@ -65,7 +65,7 @@ router.patch('/patch/:id', async (req, res) => {
     const poll = await Poll.findById(req.params.id);
 
     if (!poll) {
-      return res.status(400).json({ msg: 'Poll not found' });
+      return res.status(404).json({ msg: 'Poll not found' });
     }
 
     const update = 'options.' + index + '.count';
@@ -79,7 +79,7 @@ router.patch('/patch/:id', async (req, res) => {
     res.json(updatedPoll);
   } catch (err) {
     if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Poll not found' });
+      return res.status(400).json({ msg: 'Poll not found' });
     }
     res.status(500).send('Server Error');
   }
