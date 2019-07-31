@@ -78,7 +78,7 @@ const VotePage = ({ match, history }) => {
       await axios.patch(`/api/patch/${id}`, body, config);
       history.push(`/ResultsPage/${id}`);
     } catch (err) {
-      console.log(err);
+      console.log(err.response.statusText);
     }
   };
 
@@ -98,7 +98,7 @@ const VotePage = ({ match, history }) => {
           {question}
         </Typography>
         <form onSubmit={e => onSubmit(e, selected, history)}>
-          <div>
+          <div style={{ display: 'inline-block', textAlign: 'left' }}>
             <FormGroup style={{ marginTop: '25px' }}>
               {options.map((option, idx) => (
                 <div key={idx} id='form-div'>
@@ -120,6 +120,7 @@ const VotePage = ({ match, history }) => {
               ))}
             </FormGroup>
           </div>
+          <br />
           <Button
             style={{
               marginTop: '25px',
