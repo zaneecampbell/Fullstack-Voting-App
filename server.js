@@ -12,13 +12,13 @@ app.use(express.json({ extended: false }));
 // Defined Route/s
 app.use('/api', require('./routes/api/poll'));
 
-// Server statis assets in production
+// Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
-  // Set statis folder
+  // Set static folder
   app.use(express.static('client/build'));
 
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
 
