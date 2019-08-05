@@ -30,3 +30,4 @@ app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 // UPDATE NOTES:
 // Add IP tracking using third party web-services, save in database. To keep people from voting more then once.
 // Add a favicon :)
+// ReadMe update test
