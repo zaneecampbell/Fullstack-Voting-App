@@ -135,7 +135,6 @@ const VotePage = ({ match, history }) => {
           </Button>
         </form>
       </Paper>
-      <Button onClick={() => console.log(formData)}>Log Button</Button>
     </Fragment>
   );
 };
