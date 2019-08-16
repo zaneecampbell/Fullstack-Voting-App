@@ -126,6 +126,17 @@ const ResultsPage = ({ match, history }) => {
             </div>
           </Grid>
         </Grid>
+        <Typography
+          style={{
+            marginTop: '30px',
+            paddingBottom: '30px',
+            textAlign: 'center'
+          }}
+        >
+          Share this link with others
+          <br />
+          {`https://chill-polls.herokuapp.com/VotePage/${match.params.id}`}
+        </Typography>
       </Paper>
     </Fragment>
   );

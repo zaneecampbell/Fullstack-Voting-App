@@ -134,6 +134,11 @@ const VotePage = ({ match, history }) => {
             Vote
           </Button>
         </form>
+        <Typography style={{ marginTop: '30px' }}>
+          Share this link with others
+          <br />
+          {`https://chill-polls.herokuapp.com/VotePage/${match.params.id}`}
+        </Typography>
       </Paper>
     </Fragment>
   );
