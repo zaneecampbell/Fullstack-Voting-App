@@ -53,6 +53,10 @@ const VotePage = ({ match, history }) => {
     // if there is an id field checks to see if youve already voted in this one,
     // else pushes current id to the array and saves it back, so you can't vote again
 
+    if (!selected) {
+      return alert('You have not voted on anything!');
+    }
+
     if (!voted) {
       const voted = [];
       voted.push(id);
@@ -145,3 +149,5 @@ const VotePage = ({ match, history }) => {
 };
 
 export default VotePage;
+
+// if you dont vote on anything it still pushes you forward and counts as a vote....
