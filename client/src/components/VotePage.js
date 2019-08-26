@@ -150,4 +150,5 @@ const VotePage = ({ match, history }) => {
 
 export default VotePage;
 
-// if you dont vote on anything it still pushes you forward and counts as a vote....
+// fixed
+// http://gd.geobytes.com/GetCityDetails    gets IP address
