@@ -1,7 +1,5 @@
-import React, { useState, Fragment } from 'react';
-// import { Route, Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
-// import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
@@ -87,7 +85,7 @@ const CreatePage = ({ history }) => {
   };
 
   return (
-    <Fragment>
+    <div style={{ marginLeft: '5px', marginRight: '5px' }}>
       <Paper
         style={{
           maxWidth: '750px',
@@ -148,7 +146,7 @@ const CreatePage = ({ history }) => {
           </Button>
         </form>
       </Paper>
-    </Fragment>
+    </div>
   );
 };
 

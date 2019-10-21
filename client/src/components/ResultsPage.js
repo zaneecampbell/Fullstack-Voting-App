@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -51,7 +51,7 @@ const ResultsPage = ({ match, history }) => {
   useInterval(getData, 1000);
 
   return (
-    <Fragment>
+    <div style={{ marginLeft: '5px', marginRight: '5px' }}>
       <Paper style={{ margin: 'auto', marginTop: '50px', maxWidth: '1345px' }}>
         <Typography
           style={{ paddingTop: '25px', fontSize: '50px', textAlign: 'center' }}
@@ -138,7 +138,7 @@ const ResultsPage = ({ match, history }) => {
           {`https://chill-polls.herokuapp.com/VotePage/${match.params.id}`}
         </Typography>
       </Paper>
-    </Fragment>
+    </div>
   );
 };
 

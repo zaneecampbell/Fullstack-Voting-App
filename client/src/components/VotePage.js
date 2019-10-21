@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Radio from '@material-ui/core/Radio';
@@ -87,7 +87,7 @@ const VotePage = ({ match, history }) => {
   };
 
   return (
-    <Fragment>
+    <div style={{ marginLeft: '5px', marginRight: '5px' }}>
       <Paper
         style={{
           maxWidth: '750px',
@@ -144,7 +144,7 @@ const VotePage = ({ match, history }) => {
           {`https://chill-polls.herokuapp.com/VotePage/${match.params.id}`}
         </Typography>
       </Paper>
-    </Fragment>
+    </div>
   );
 };
 
