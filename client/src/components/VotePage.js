@@ -149,6 +149,3 @@ const VotePage = ({ match, history }) => {
 };
 
 export default VotePage;
-
-// fixed
-// http://gd.geobytes.com/GetCityDetails    gets IP address

@@ -14,11 +14,11 @@ const CreatePage = ({ history }) => {
     ]
   });
 
-  // destructure state variables
+  // Destructure state variables
   const { question, options } = formData;
 
   const onInput = e => {
-    // if typing in question field updates question in state
+    // If typing in question field updates question in state
     if (e.target.name === 'question') {
       setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -26,10 +26,13 @@ const CreatePage = ({ history }) => {
     } else {
       // Creates a copy of the options state
       let copy = options;
+
       // Updates the copy of the state
       copy[e.target.id].option = e.target.value;
+
       // Replaces currect options array with updated copy
       setFormData({ ...formData, options: copy });
+
       // If the field being typed in is the bottom field, automatically adds a new Input by adding a new options object to the state.
       if (parseInt(e.target.id, 10) === options.length - 1) {
         options.push({
@@ -74,9 +77,11 @@ const CreatePage = ({ history }) => {
       }
 
       console.log(postData, 'postData');
+
       // send to server
       const res = await axios.post('/api/create', postData, config);
       console.log(res.data, 'resData - CreatePage End');
+
       // push you to votepage
       history.push(`/VotePage/${res.data}`);
     } catch (err) {
