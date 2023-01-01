@@ -2,7 +2,7 @@
   "name": "fullstack-voting-app",
   "dependencies": {
     "concurrently": "^4.1.0",
-    "config": "^3.1.0",
+    "config": "^3.3.8",
     "express": "^4.17.1",
     "express-validator": "^6.0.0",
     "mongoose": "^5.6.0",
